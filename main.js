@@ -207,7 +207,7 @@ function process_wb(wb) {
     }
 
     if (filename in scriptLines) {
-      scriptLines[filename].npcName.push(npcName);
+      scriptLines[filename].characters.push(npcName);
     } else {
       scriptLines[filename] = {
         characters: [npcName],
