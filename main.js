@@ -192,7 +192,7 @@ function process_wb(wb) {
   var lines = to_json(wb)[wb.SheetNames[0]];
   var dataLineCount = lines.length - 1;
   var npcName = sheet['M1'].v.replace(/\*/g, '');
-  for (var i = 3; i <= dataLineCount; i++) {
+  for (var i = 3; i <= (dataLineCount+2); i++) {
     var filename = sheet['B'+i].v;
     var segments = [];
     var prompt = getBlank('A'+i);
