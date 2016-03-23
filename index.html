@@ -16,6 +16,7 @@
       .intro {
         max-width: 840px;
         margin: 0 auto;
+        padding-bottom: 2em;
       }
       .darkTheme {
         background: #000;
@@ -79,6 +80,29 @@
       .lines {
         padding: 0 0 1em 4em;
       }
+      .downloadButton {
+        background: #808080;
+        color: #FFF;
+        font-size: 16px;
+        border: 0;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        outline: 0;
+      }
+      .downloadButton:hover {
+        background: #666;
+      }
+      .downloadButton:active {
+        background: #000;
+      }
+      .darkTheme .downloadButton:hover {
+        background: #BBB;
+        color: #000;
+      }
+      .darkTheme .downloadButton:active {
+        background: #FFF;
+        color: #000;
+      }
     </style>
   </head>
 <body>
@@ -139,7 +163,9 @@
       onclick='handleCheckClick(this)'>
       <label for=usedark>Use <b>dark</b> theme.</label>
     </p>
-    <button class=downloadButton onclick="download()" type=input>Download .xlsx file</button>
+    <button class=downloadButton onclick="download('xlsx')">
+      Download .xlsx file of merged scripts
+    </button>
   </div>
 
 <div id="out"></div>
@@ -148,9 +174,12 @@
 <!--<script src="dist/cpexcel.js"></script>-->
 <script src="shim.js"></script>
 <script src="jszip.js"></script>
-<script src="xlsx.js"></script>
+<!-- <script src="xlsx.js"></script> -->
+<script src="xlsx.core.min.js"></script>
 <!-- uncomment the next line here and in xlsxworker.js for ODS support -->
 <script src="ods.js"></script>
+
+<!-- <script src="xlsx.core.min.js"></script> -->
 <script src="Blob.js"></script>
 <script src="FileSaver.js"></script>
 <script src="main.js"></script>
