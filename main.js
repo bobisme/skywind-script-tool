@@ -138,6 +138,7 @@ function b64it() {
 }
 
 var scriptLines = {};
+var scriptLinesList = [];
 var DBG_wb;
 var segmentLetters = [
   'D', 'F', 'H', 'J', 'L', 'N', 'P', 'R', 'T', 'V', 'W', 'X', 'Z',
@@ -145,7 +146,8 @@ var segmentLetters = [
 
 function toHtml(scriptLines) {
   var out = '';
-  for (var key in scriptLines) {
+  for (var lineIdx=0; lineIdx < scriptLinesList.length; lineIdx++) {
+    var key = scriptLinesList[lineIdx];
     var data = scriptLines[key];
     out += '<div class=lineBlock>';
     out += '<div class=filename>' + data.filename + '</div>';
@@ -217,6 +219,7 @@ function process_wb(wb) {
         notes: notes,
         segments: segments,
       };
+      scriptLinesList.push(filename);
     }
     
   }
