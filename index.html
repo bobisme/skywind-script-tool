@@ -124,7 +124,7 @@
       Use readAsBinaryString: (when available) <input type="checkbox" name="userabs" checked><br />
     </div>
 
-    <script>
+    <script type="text/javascript" charset="utf-8">
       function handleCheckClick(box) {
         var body = document.getElementsByTagName('body')[0];
         if (box.checked === true) {
@@ -139,6 +139,7 @@
       onclick='handleCheckClick(this)'>
       <label for=usedark>Use <b>dark</b> theme.</label>
     </p>
+    <button class=downloadButton onclick="download()" type=input>Download .xlsx file</button>
   </div>
 
 <div id="out"></div>
@@ -150,6 +151,8 @@
 <script src="xlsx.js"></script>
 <!-- uncomment the next line here and in xlsxworker.js for ODS support -->
 <script src="ods.js"></script>
+<script src="Blob.js"></script>
+<script src="FileSaver.js"></script>
 <script src="main.js"></script>
 <!-- <script type="text/javascript"> -->
 <!-- 	var _gaq = _gaq || []; -->
