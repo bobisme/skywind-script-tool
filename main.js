@@ -252,6 +252,7 @@ var segmentLetters = [
     function handleDrop(e) {
       e.stopPropagation();
       e.preventDefault();
+      e.target.className = '';
       rABS = document.getElementsByName("userabs")[0].checked;
       use_worker = document.getElementsByName("useworker")[0].checked;
       var files = e.dataTransfer.files;
@@ -280,16 +281,32 @@ var segmentLetters = [
       }
     }
 
+    function handleDragenter(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+      e.target.className = 'dragenter';
+    }
+
     function handleDragover(e) {
       e.stopPropagation();
       e.preventDefault();
       e.dataTransfer.dropEffect = 'copy';
+      e.target.className = 'dragover';
     }
 
     if(drop.addEventListener) {
-      drop.addEventListener('dragenter', handleDragover, false);
+      drop.addEventListener('dragenter', handleDragenter, false);
       drop.addEventListener('dragover', handleDragover, false);
       drop.addEventListener('drop', handleDrop, false);
+
+      document.addEventListener("dragover", function(e) {
+        drop.className = 'dropzone';
+      }, false);
+
+      document.addEventListener("dragleave", function(e) {
+        drop.className = '';
+      }, false);
     }
 
 

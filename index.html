@@ -31,6 +31,17 @@
         text-align:center;
         font-size: 20px;
         color: #808080;
+        transition: transform 300ms;
+        line-height: 1.5em;
+      }
+      #drop.dropzone {
+        background: lightgreen;
+        color: #000;
+      }
+      #drop.dragover {
+        background: green;
+        color: white;
+        transform: scale(1.2);
       }
       #b64data{
         width:100%;
@@ -135,7 +146,7 @@
       <em>One file at a time.</em>
     </div>
     <div id="drop">
-      Drop each character script here to merge them and display the result
+      Drop each character script here<br> to merge them and display the result
       below.
     </div>
     <p><input type="file" name="xlfile" id="xlf" /> ... or click here to select a file</p>
