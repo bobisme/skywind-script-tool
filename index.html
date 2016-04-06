@@ -119,22 +119,15 @@
 <body>
   <div class=intro>
     <h1>Skywind Script Tool</h1>
-    <h5>by Bob (bobisme)</h5>
     <p>
       This tool uses
       <a href="https://github.com/SheetJS/js-xlsx">js-xlsx</a>
       to join merge together and formats it for easier reading.
     </p>
     <p>
-      I don&rsquo;t have excel and I didn't like the way the scripts were
-      formatted, so I just built this tool. It should work on a smart phone or
-      tablet, so you can take your script into your booth... You just have to
-      get the xls files on your phone.  There's also a "dark" theme (see
-      below).  There's no way to save this out, but I guess you could print
-      it.
-    </p>
-    <p>
-      If you have questions, find me in the Skywind Discord server @bobisme.
+      If you have questions, find me in the Skywind Discord server
+      <strong>@bobisme</strong>.
+      <a href="https://github.com/bobisme/skywind-script-tool">Source</a>.
     </p>
     <select style="display:none" name="format">
       <option value="json" selected> JSON</option>
@@ -150,6 +143,7 @@
       below.
     </div>
     <p><input type="file" name="xlfile" id="xlf" /> ... or click here to select a file</p>
+
     <div style="display:none">
       <textarea id="b64data">... or paste a base64-encoding here</textarea>
       <input type="button" id="dotext" value="Click here to process the base64 text" onclick="b64it();"/><br />
