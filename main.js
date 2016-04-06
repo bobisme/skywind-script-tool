@@ -145,56 +145,62 @@ var segmentLetters = [
     process_wb(wb);
   }
 
-    function toHtml(scriptLines) {
-      var out = '';
-      for (var lineIdx=0; lineIdx < scriptLinesList.length; lineIdx++) {
-        var key = scriptLinesList[lineIdx];
-        var data = scriptLines[key];
-        out += '<div class=lineBlock>';
-        out += '<div class=filename>' + data.filename + '</div>';
-        if (data.characters) {
-          out += '<div class=chars>';
-          out += data.characters.join(', ');
-          out += '</div>';
-        }
-        out += '<div class=all-notes>';
-        if (data.prompt) {
-          out += '<div class=prompt>' + data.prompt + '</div>';
-        }
-        if (data.notes) {
-          out += '<div class=notes>' + data.notes + '</div>';
-        }
-        if (data.disposition) {
-          out += '<div class=disposition>' + data.disposition + '</div>';
-        }
-        out += '</div>';
-        out += '<div class=lines>'
-        for (var i = 0; i < data.segments.length; i++) {
-          out += '<p>' + data.segments[i] + '</p>';
-        }
-        out += '</div>';
-
+  function toHtml(scriptLines) {
+    var out = '';
+    for (var lineIdx=0; lineIdx < scriptLinesList.length; lineIdx++) {
+      var key = scriptLinesList[lineIdx];
+      var data = scriptLines[key];
+      out += '<div class=lineBlock>';
+      out += '<div class=filename>' + data.filename + '</div>';
+      if (data.characters) {
+        out += '<div class=chars>';
+        out += data.characters.join(', ');
         out += '</div>';
       }
-      return out;
+      out += '<div class=all-notes>';
+      if (data.prompt) {
+        out += '<div class=prompt>' + data.prompt + '</div>';
+      }
+      if (data.notes) {
+        out += '<div class=notes>' + data.notes + '</div>';
+      }
+      if (data.disposition) {
+        out += '<div class=disposition>' + data.disposition + '</div>';
+      }
+      out += '</div>';
+      out += '<div class=lines>'
+      for (var i = 0; i < data.segments.length; i++) {
+        out += '<p>' + data.segments[i] + '</p>';
+      }
+      out += '</div>';
+
+      out += '</div>';
+    }
+    return out;
+  }
+
+  function process_wb(wb) {
+    DBG_wb = wb;
+    var output = "";
+    var sheet = wb.Sheets[wb.SheetNames[0]];
+
+    console.debug('DEBUG, SHEET', sheet);
+
+    function getBlank(cellId) {
+      var cell = sheet[cellId];
+      if (typeof cell !== 'undefined') {
+        return cell.v;
+      }
+      return null;
     }
 
-    function process_wb(wb) {
-      DBG_wb = wb;
-      var output = "";
-      var sheet = wb.Sheets[wb.SheetNames[0]];
+    var lines = to_json(wb)[wb.SheetNames[0]];
+    var dataLineCount = lines.length - 1;
+    var npcName = '';
+    if (sheet['M1']) {
+      npcName = sheet['M1'].v.replace(/\*/g, '');
+    }
 
-      function getBlank(cellId) {
-        var cell = sheet[cellId];
-        if (typeof cell !== 'undefined') {
-          return cell.v;
-        }
-        return null;
-      }
-
-      var lines = to_json(wb)[wb.SheetNames[0]];
-      var dataLineCount = lines.length - 1;
-      var npcName = sheet['M1'].v.replace(/\*/g, '');
     for (var i = 3; i <= (dataLineCount+2); i++) {
       var filename = sheet['B'+i].v;
       var segments = [];
