@@ -256,8 +256,8 @@ var segmentLetters = [
       rABS = document.getElementsByName("userabs")[0].checked;
       use_worker = document.getElementsByName("useworker")[0].checked;
       var files = e.dataTransfer.files;
-      var f = files[0];
-      {
+      for (var fileIdx = 0; fileIdx < files.length; fileIdx++) {
+        var f = files[fileIdx];
         var reader = new FileReader();
         var name = f.name;
         reader.onload = function(e) {
